@@ -66,3 +66,95 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses.release.xcconfig
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses.modulemap
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses.debug.xcconfig
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses-umbrella.h
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses-resources.sh
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses-frameworks.sh
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses-dummy.m
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses-acknowledgements.plist
+Pods/Target Support Files/Pods-Expenses/Pods-Expenses-acknowledgements.markdown
+Pods/Target Support Files/Pods-Expenses/Info.plist
+Pods/Target Support Files/Eureka/Info.plist
+Pods/Target Support Files/Eureka/Eureka.xcconfig
+Pods/Target Support Files/Eureka/Eureka.modulemap
+Pods/Target Support Files/Eureka/Eureka-umbrella.h
+Pods/Target Support Files/Eureka/Eureka-prefix.pch
+Pods/Target Support Files/Eureka/Eureka-dummy.m
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Manifest.lock
+Pods/Eureka/Source/Validations/RuleURL.swift
+Pods/Eureka/Source/Validations/RuleRequired.swift
+Pods/Eureka/Source/Validations/RuleRegExp.swift
+Pods/Eureka/Source/Validations/RuleRange.swift
+Pods/Eureka/Source/Validations/RuleLength.swift
+Pods/Eureka/Source/Validations/RuleEqualsToRow.swift
+Pods/Eureka/Source/Validations/RuleEmail.swift
+Pods/Eureka/Source/Validations/RuleClosure.swift
+Pods/Eureka/Source/Rows/TriplePickerRow.swift
+Pods/Eureka/Source/Rows/TriplePickerInputRow.swift
+Pods/Eureka/Source/Rows/TextAreaRow.swift
+Pods/Eureka/Source/Rows/SwitchRow.swift
+Pods/Eureka/Source/Rows/StepperRow.swift
+Pods/Eureka/Source/Rows/SliderRow.swift
+Pods/Eureka/Source/Rows/SelectableRows/ListCheckRow.swift
+Pods/Eureka/Source/Rows/SegmentedRow.swift
+Pods/Eureka/Source/Rows/PushRow.swift
+Pods/Eureka/Source/Rows/PopoverSelectorRow.swift
+Pods/Eureka/Source/Rows/PickerRow.swift
+Pods/Eureka/Source/Rows/PickerInputRow.swift
+Pods/Eureka/Source/Rows/PickerInlineRow.swift
+Pods/Eureka/Source/Rows/MultipleSelectorRow.swift
+Pods/Eureka/Source/Rows/LabelRow.swift
+Pods/Eureka/Source/Rows/FieldsRow.swift
+Pods/Eureka/Source/Rows/DoublePickerRow.swift
+Pods/Eureka/Source/Rows/DoublePickerInputRow.swift
+Pods/Eureka/Source/Rows/DateRow.swift
+Pods/Eureka/Source/Rows/DatePickerRow.swift
+Pods/Eureka/Source/Rows/DateInlineRow.swift
+Pods/Eureka/Source/Rows/Controllers/SelectorViewController.swift
+Pods/Eureka/Source/Rows/Controllers/SelectorAlertController.swift
+Pods/Eureka/Source/Rows/Controllers/MultipleSelectorViewController.swift
+Pods/Eureka/Source/Rows/Common/SelectorRow.swift
+Pods/Eureka/Source/Rows/Common/Protocols.swift
+Pods/Eureka/Source/Rows/Common/OptionsRow.swift
+Pods/Eureka/Source/Rows/Common/GenericMultipleSelectorRow.swift
+Pods/Eureka/Source/Rows/Common/FieldRow.swift
+Pods/Eureka/Source/Rows/Common/DecimalFormatter.swift
+Pods/Eureka/Source/Rows/Common/DateInlineFieldRow.swift
+Pods/Eureka/Source/Rows/Common/DateFieldRow.swift
+Pods/Eureka/Source/Rows/Common/AlertOptionsRow.swift
+Pods/Eureka/Source/Rows/CheckRow.swift
+Pods/Eureka/Source/Rows/ButtonRowWithPresent.swift
+Pods/Eureka/Source/Rows/ButtonRow.swift
+Pods/Eureka/Source/Rows/AlertRow.swift
+Pods/Eureka/Source/Rows/ActionSheetRow.swift
+Pods/Eureka/Source/Resources/Eureka.bundle/forward-chevron@3x.png
+Pods/Eureka/Source/Resources/Eureka.bundle/forward-chevron@2x.png
+Pods/Eureka/Source/Resources/Eureka.bundle/forward-chevron@1x.png
+Pods/Eureka/Source/Resources/Eureka.bundle/back-chevron@3x.png
+Pods/Eureka/Source/Resources/Eureka.bundle/back-chevron@2x.png
+Pods/Eureka/Source/Resources/Eureka.bundle/back-chevron@1x.png
+Pods/Eureka/Source/Core/Validation.swift
+Pods/Eureka/Source/Core/SwipeActions.swift
+Pods/Eureka/Source/Core/SelectableSection.swift
+Pods/Eureka/Source/Core/SelectableRowType.swift
+Pods/Eureka/Source/Core/Section.swift
+Pods/Eureka/Source/Core/RowType.swift
+Pods/Eureka/Source/Core/RowProtocols.swift
+Pods/Eureka/Source/Core/RowControllerType.swift
+Pods/Eureka/Source/Core/Row.swift
+Pods/Eureka/Source/Core/PresenterRowType.swift
+Pods/Eureka/Source/Core/Operators.swift
+Pods/Eureka/Source/Core/NavigationAccessoryView.swift
+Pods/Eureka/Source/Core/InlineRowType.swift
+Pods/Eureka/Source/Core/Helpers.swift
+Pods/Eureka/Source/Core/HeaderFooterView.swift
+Pods/Eureka/Source/Core/Form.swift
+Pods/Eureka/Source/Core/Core.swift
+Pods/Eureka/Source/Core/CellType.swift
+Pods/Eureka/Source/Core/Cell.swift
+Pods/Eureka/Source/Core/BaseRow.swift
+Pods/Eureka/README.md
+Pods/Eureka/LICENSE
