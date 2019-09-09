@@ -29,7 +29,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
         currencyFormatter.locale = Locale.current
-        
+
         self.tableView.rowHeight = 80
         let transactionCell = UINib(nibName: "TransactionCell", bundle: nil)
         self.tableView.register(transactionCell, forCellReuseIdentifier: "MyCell")
@@ -82,6 +82,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     // MARK: - Table View
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
@@ -96,6 +108,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
         let event = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withEvent: event)
+        cell.showsReorderControl = true
         return cell
     }
 

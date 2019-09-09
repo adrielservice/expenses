@@ -27,6 +27,7 @@ class DetailViewController: FormViewController {
                 }
             
                 <<< DateRow() {
+                    $0.tag = "timestamp"
                     $0.title = "Timestamp"
                     $0.value = detailItem?.timestamp
                 }
@@ -67,6 +68,9 @@ class DetailViewController: FormViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         do {
+            
+            let dateRow: DateRow? = form.rowBy(tag: "timestamp")
+            detailItem?.timestamp = dateRow?.value
             
             let amountRow: DecimalRow? = form.rowBy(tag: "amount")
             detailItem?.amount = amountRow?.value ?? 0
