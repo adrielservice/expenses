@@ -8,15 +8,14 @@
 
 import UIKit
 import Eureka
+import CoreData
 
 class DetailViewController: FormViewController {
+    
+    var managedObjectContext: NSManagedObjectContext? = nil
 
     func configureView() {
         // Update the user interface for the detail item.
-        
-        // Do any additional setup after loading the view.
-        //        configureView()
-        
         form +++
             
             Section()
@@ -40,6 +39,7 @@ class DetailViewController: FormViewController {
                 }
             
                 <<< DecimalRow(){
+                    $0.tag = "amount"
                     $0.useFormatterDuringInput = true
                     $0.title = "Amount"
                     $0.value = detailItem?.amount
@@ -50,11 +50,10 @@ class DetailViewController: FormViewController {
                 }
             
                 <<< TextRow() {
+                    $0.tag = "summary"
                     $0.title = "Summary"
                     $0.value = detailItem?.summary
                 }
-            
-        
         
     }
 
@@ -64,10 +63,29 @@ class DetailViewController: FormViewController {
         // Remove excess separator lines on non-existent cells
         tableView.tableFooterView = UIView()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        do {
+            
+            let amountRow: DecimalRow? = form.rowBy(tag: "amount")
+            detailItem?.amount = amountRow?.value ?? 0
+            
+            let summaryRow: TextRow? = form.rowBy(tag: "summary")
+            detailItem?.summary = summaryRow?.value
+            
+            print("Summary: \(detailItem?.summary ?? "unknown")")
+            try self.managedObjectContext?.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
 
     var detailItem: Event? {
         didSet {
-            // Update the view.
             configureView()
         }
     }

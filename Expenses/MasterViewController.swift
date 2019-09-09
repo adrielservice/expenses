@@ -15,6 +15,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var managedObjectContext: NSManagedObjectContext? = nil
     
     let dateFormatter: DateFormatter =  DateFormatter()
+    let currencyFormatter: NumberFormatter = NumberFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
         dateFormatter.dateStyle = DateFormatter.Style.short //Set date style
         dateFormatter.timeZone = .current
+        
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.current
         
         self.tableView.rowHeight = 80
         let transactionCell = UINib(nibName: "TransactionCell", bundle: nil)
@@ -68,6 +73,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = tableView.indexPathForSelectedRow {
             let object = fetchedResultsController.object(at: indexPath)
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                controller.managedObjectContext = self.managedObjectContext
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
@@ -119,16 +125,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func configureCell(_ cell: UITableViewCell, withEvent event: Event) {
-//        cell.textLabel?.text = event.timestamp?.description
-//        cell.detailTextLabel?.text = event.summary
         let transactionCell = cell as! TransactionCell
         transactionCell.dateLabel?.text = self.dateFormatter.string(from: event.timestamp!)
-        transactionCell.amountLabel?.text = /* event.amount.description */ "$0.00"
-        transactionCell.summaryLabel?.text = /* event.summary */ "TD Credi Card"
+        transactionCell.amountLabel?.text = self.currencyFormatter.string(from: NSNumber(value: event.amount))
+        transactionCell.summaryLabel?.text = event.summary ?? "Default summary"
         transactionCell.paidSwitch?.isOn = event.isPaid
     }
     
-
     // MARK: - Fetched results controller
 
     var fetchedResultsController: NSFetchedResultsController<Event> {
