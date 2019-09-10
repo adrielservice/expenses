@@ -21,6 +21,8 @@ class DetailViewController: FormViewController {
             Section()
             
                 <<< SwitchRow() {
+                    $0.tag = "paidSwitch"
+                    $0.value = detailItem?.isPaid
                     $0.cellProvider = CellProvider<SwitchCell>(nibName: "PaidSwitchCell", bundle: Bundle.main)
                     }.cellSetup { (cell, row) in
                         cell.height = { 67 }
@@ -30,13 +32,6 @@ class DetailViewController: FormViewController {
                     $0.tag = "timestamp"
                     $0.title = "Timestamp"
                     $0.value = detailItem?.timestamp
-                }
-            
-            
-                <<< SwitchRow() {
-                    $0.cellProvider = CellProvider<SwitchCell>(nibName: "AutoPaymentCell", bundle: Bundle.main)
-                    }.cellSetup { (cell, row) in
-                        cell.height = { 67 }
                 }
             
                 <<< DecimalRow(){
@@ -68,6 +63,9 @@ class DetailViewController: FormViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         do {
+            
+            let switchRow: SwitchRow? = form.rowBy(tag: "paidSwitch")
+            detailItem?.isPaid = switchRow?.value ?? false
             
             let dateRow: DateRow? = form.rowBy(tag: "timestamp")
             detailItem?.timestamp = dateRow?.value

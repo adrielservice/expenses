@@ -31,7 +31,7 @@
 		E326D6A6231FF2BD00593076 /* AutoPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoPaymentCell.xib; sourceTree = "<group>"; };
 		E326D6AB231FF43400593076 /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		E3386F6623228CE000C3ADEC /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
-		E3EFA9E023044B42006365CC /* TeleExpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeleExpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3EFA9E023044B42006365CC /* TeleExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeleExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3EFA9E323044B42006365CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3EFA9E623044B42006365CC /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
 		E3EFA9E823044B42006365CC /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		E3EFA9E123044B42006365CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3EFA9E023044B42006365CC /* TeleExpenses.app */,
+				E3EFA9E023044B42006365CC /* TeleExpense.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,9 +120,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E3EFA9DF23044B42006365CC /* TeleExpenses */ = {
+		E3EFA9DF23044B42006365CC /* TeleExpense */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3EFA9F723044B43006365CC /* Build configuration list for PBXNativeTarget "TeleExpenses" */;
+			buildConfigurationList = E3EFA9F723044B43006365CC /* Build configuration list for PBXNativeTarget "TeleExpense" */;
 			buildPhases = (
 				F83A2D003A4630500D00799E /* [CP] Check Pods Manifest.lock */,
 				E3EFA9DC23044B42006365CC /* Sources */,
@@ -134,9 +134,9 @@
 			);
 			dependencies = (
 			);
-			name = TeleExpenses;
+			name = TeleExpense;
 			productName = Expenses;
-			productReference = E3EFA9E023044B42006365CC /* TeleExpenses.app */;
+			productReference = E3EFA9E023044B42006365CC /* TeleExpense.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -154,7 +154,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E3EFA9DB23044B42006365CC /* Build configuration list for PBXProject "TeleExpenses" */;
+			buildConfigurationList = E3EFA9DB23044B42006365CC /* Build configuration list for PBXProject "TeleExpense" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -167,7 +167,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E3EFA9DF23044B42006365CC /* TeleExpenses */,
+				E3EFA9DF23044B42006365CC /* TeleExpense */,
 			);
 		};
 /* End PBXProject section */
@@ -422,7 +422,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E3EFA9DB23044B42006365CC /* Build configuration list for PBXProject "TeleExpenses" */ = {
+		E3EFA9DB23044B42006365CC /* Build configuration list for PBXProject "TeleExpense" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3EFA9F523044B43006365CC /* Debug */,
@@ -431,7 +431,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3EFA9F723044B43006365CC /* Build configuration list for PBXNativeTarget "TeleExpenses" */ = {
+		E3EFA9F723044B43006365CC /* Build configuration list for PBXNativeTarget "TeleExpense" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3EFA9F823044B43006365CC /* Debug */,

@@ -13,22 +13,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-    
-    let dateFormatter: DateFormatter =  DateFormatter()
-    let currencyFormatter: NumberFormatter = NumberFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
-        dateFormatter.dateStyle = DateFormatter.Style.short //Set date style
-        dateFormatter.timeZone = .current
-        
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.numberStyle = .currency
-        currencyFormatter.locale = Locale.current
 
         self.tableView.rowHeight = 80
         let transactionCell = UINib(nibName: "TransactionCell", bundle: nil)
@@ -84,13 +73,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Table View
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
+        return UITableViewCell.EditingStyle.none
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
+
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -109,6 +98,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let event = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withEvent: event)
         cell.showsReorderControl = true
+         // cell.shouldIndentWhileEditing = false
         return cell
     }
 
@@ -139,10 +129,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func configureCell(_ cell: UITableViewCell, withEvent event: Event) {
         let transactionCell = cell as! TransactionCell
-        transactionCell.dateLabel?.text = self.dateFormatter.string(from: event.timestamp!)
-        transactionCell.amountLabel?.text = self.currencyFormatter.string(from: NSNumber(value: event.amount))
-        transactionCell.summaryLabel?.text = event.summary ?? "Default summary"
-        transactionCell.paidSwitch?.isOn = event.isPaid
+        transactionCell.detailItem = event
     }
     
     // MARK: - Fetched results controller
