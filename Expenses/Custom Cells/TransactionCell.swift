@@ -16,7 +16,8 @@ class TransactionCell: UITableViewCell {
     // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
     static func initStaticVars() {
         dateFormatter = DateFormatter()
-        dateFormatter?.dateStyle = DateFormatter.Style.short //Set date style
+        // dateFormatter?.dateStyle = DateFormatter.Style.short //Set date style
+        dateFormatter?.dateFormat = "MM/dd"
         dateFormatter?.timeZone = .current
     
         currencyFormatter = NumberFormatter()
