@@ -18,6 +18,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
 
@@ -65,20 +66,28 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     // MARK: - Table View
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    }
+    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return UITableViewCell.EditingStyle.delete
+        return .delete
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
 
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,18 +97,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
+        cell.showsReorderControl = true
+        cell.shouldIndentWhileEditing = false
         let event = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withEvent: event)
-        cell.showsReorderControl = true
-         // cell.shouldIndentWhileEditing = false
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showDetail", sender: self)
     }
