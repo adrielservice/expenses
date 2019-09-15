@@ -13,6 +13,7 @@ class TransactionCell: UITableViewCell {
     
     static var dateFormatter: DateFormatter? = nil
     static var currencyFormatter: NumberFormatter? = nil
+    static let calendar = Calendar.current
     
     var managedObjectContext: NSManagedObjectContext? = nil
     
@@ -41,15 +42,49 @@ class TransactionCell: UITableViewCell {
     }
     
     func configureView() {
-        
         if (TransactionCell.dateFormatter == nil || TransactionCell.currencyFormatter == nil) {
             TransactionCell.initStaticVars()
         }
         
-        self.dateLabel?.text = TransactionCell.dateFormatter?.string(from: detailItem?.timestamp! ?? Date())
+        
+        let today = TransactionCell.calendar.startOfDay(for: Date())
+        self.dateLabel.font = UIFont.systemFont(ofSize: self.dateLabel.font.pointSize)
+        self.dateLabel.textColor = UIColor.black
+        
+        confirmTimestampInitializedToBeginningOfDay()
+        
+        self.dateLabel?.text = TransactionCell.dateFormatter?.string(from: detailItem?.timestamp! ?? today)
+        if (!self.detailItem!.isPaid) {
+            let timeDiff = self.detailItem!.timestamp!.timeIntervalSince(today)
+            //Transaction is late
+            if (timeDiff < 0) {
+                self.dateLabel.textColor = UIColor.red
+            }
+            // Transaction last day
+            else if (timeDiff < 24 * 60 * 60) {
+                self.dateLabel.font = UIFont.boldSystemFont(ofSize: self.dateLabel.font.pointSize)
+            }
+        }
+        
         self.amountLabel?.text = TransactionCell.currencyFormatter?.string(from: NSNumber(value: detailItem?.amount ?? 0))
         self.summaryLabel?.text = detailItem?.summary ?? "Default summary"
         self.paidSwitch?.isOn = detailItem?.isPaid ?? false
+    }
+    
+    func confirmTimestampInitializedToBeginningOfDay() {
+        let beginningOfDayTimestamp = TransactionCell.calendar.startOfDay(for: self.detailItem?.timestamp ?? Date())
+        let timeDiff = detailItem?.timestamp?.timeIntervalSince(beginningOfDayTimestamp)
+        if (timeDiff != 0) {
+            detailItem?.timestamp = beginningOfDayTimestamp
+            do {
+                try self.managedObjectContext?.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

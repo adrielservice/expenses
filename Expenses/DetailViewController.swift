@@ -76,7 +76,6 @@ class DetailViewController: FormViewController {
             let summaryRow: TextRow? = form.rowBy(tag: "summary")
             detailItem?.summary = summaryRow?.value
             
-            print("Summary: \(detailItem?.summary ?? "unknown")")
             try self.managedObjectContext?.save()
         } catch {
             // Replace this implementation with code to handle the error appropriately.

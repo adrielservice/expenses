@@ -49,7 +49,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func insertNewObject(_ sender: Any) {
         let context = self.fetchedResultsController.managedObjectContext
         self.newEvent = Event(context: context)
-        self.newEvent?.timestamp = Date()
+        let calendar = Calendar.current
+        self.newEvent?.timestamp = calendar.startOfDay(for: Date())
         self.performSegue(withIdentifier: "showDetail", sender: self)
     }
 
