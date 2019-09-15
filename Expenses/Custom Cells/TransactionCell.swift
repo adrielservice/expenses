@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class TransactionCell: UITableViewCell {
     
     static var dateFormatter: DateFormatter? = nil
     static var currencyFormatter: NumberFormatter? = nil
+    
+    var managedObjectContext: NSManagedObjectContext? = nil
     
     // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
     static func initStaticVars() {
@@ -51,12 +54,20 @@ class TransactionCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     @IBAction func onPaidSwitchValueChange (sender: Any?) {
         self.detailItem?.isPaid = paidSwitch.isOn
+        
+        do {
+            try self.managedObjectContext?.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
     }
 
 }

@@ -85,6 +85,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         return fetchedResultsController.sections?.count ?? 0
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = fetchedResultsController.sections![section]
+        if (sectionInfo.name == "0") {
+            return "Upcoming"
+        } else if (sectionInfo.name == "1") {
+            return "Paid"
+        }
+        
+        return sectionInfo.name
+    }
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
@@ -99,6 +110,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
         cell.showsReorderControl = true
         cell.shouldIndentWhileEditing = false
+        
         let event = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withEvent: event)
         return cell
@@ -127,6 +139,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureCell(_ cell: UITableViewCell, withEvent event: Event) {
         let transactionCell = cell as! TransactionCell
         transactionCell.detailItem = event
+        transactionCell.managedObjectContext = self.managedObjectContext
     }
     
     // MARK: - Fetched results controller
@@ -137,18 +150,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.fetchBatchSize = 100
+        let sortTimeDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+        let sortPaidDescriptor = NSSortDescriptor(key: "isPaid", ascending: true)
         
-        // Set the batch size to a suitable number.
-        fetchRequest.fetchBatchSize = 20
-        
-        // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = [sortPaidDescriptor, sortTimeDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: "isPaid", cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
