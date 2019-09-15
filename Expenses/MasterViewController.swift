@@ -25,6 +25,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.tableView.rowHeight = 60
         let transactionCell = UINib(nibName: "TransactionCell", bundle: nil)
         self.tableView.register(transactionCell, forCellReuseIdentifier: "MyCell")
+        
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl!.addTarget(self, action: #selector(refreshTableData(_:)), for: .valueChanged)
+        self.tableView.refreshControl!.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        self.tableView.refreshControl!.attributedTitle = NSAttributedString(string: "Fetching Transaction Data ...")
+
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton
@@ -151,7 +157,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
         fetchRequest.fetchBatchSize = 100
-        let sortTimeDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+        let sortTimeDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
         let sortPaidDescriptor = NSSortDescriptor(key: "isPaid", ascending: true)
         
         fetchRequest.sortDescriptors = [sortPaidDescriptor, sortTimeDescriptor]
@@ -163,16 +169,34 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         _fetchedResultsController = aFetchedResultsController
         
         do {
-            try _fetchedResultsController!.performFetch()
+            try self.fetchedResultsController.performFetch()
         } catch {
-             // Replace this implementation with code to handle the error appropriately.
-             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             let nserror = error as NSError
-             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
         
         return _fetchedResultsController!
-    }    
+    }
+    
+    @objc
+    func refreshTableData(_ sender: Any) {
+        DispatchQueue.main.async {
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+                self.tableView.refreshControl!.endRefreshing()
+                // self.activityIndicatorView.stopAnimating()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
     var _fetchedResultsController: NSFetchedResultsController<Event>? = nil
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
