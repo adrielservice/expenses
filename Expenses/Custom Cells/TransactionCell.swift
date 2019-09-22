@@ -49,7 +49,7 @@ class TransactionCell: UITableViewCell {
         
         let today = TransactionCell.calendar.startOfDay(for: Date())
         self.dateLabel.font = UIFont.systemFont(ofSize: self.dateLabel.font.pointSize)
-        self.dateLabel.textColor = UIColor.black
+        self.dateLabel.textColor = UIColor.label
         
         confirmTimestampInitializedToBeginningOfDay()
         
@@ -58,7 +58,7 @@ class TransactionCell: UITableViewCell {
             let timeDiff = self.detailItem!.timestamp!.timeIntervalSince(today)
             //Transaction is late
             if (timeDiff < 0) {
-                self.dateLabel.textColor = UIColor.red
+                self.dateLabel.textColor = UIColor.systemRed
             }
             // Transaction last day
             else if (timeDiff < 24 * 60 * 60) {

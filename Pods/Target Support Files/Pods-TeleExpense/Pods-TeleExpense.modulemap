@@ -1,0 +1,6 @@
+framework module Pods_TeleExpense {
+  umbrella header "Pods-TeleExpense-umbrella.h"
+
+  export *
+  module * { export * }
+}

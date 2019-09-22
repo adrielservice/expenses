@@ -24,14 +24,17 @@ class DetailViewController: FormViewController {
                     $0.tag = "paidSwitch"
                     $0.value = detailItem?.isPaid
                     $0.cellProvider = CellProvider<SwitchCell>(nibName: "PaidSwitchCell", bundle: Bundle.main)
-                    }.cellSetup { (cell, row) in
-                        cell.height = { 67 }
+                }.cellSetup { (cell, row) in
+                    cell.height = { 67 }
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
                 }
             
                 <<< DateRow() {
                     $0.tag = "timestamp"
                     $0.title = "Timestamp"
                     $0.value = detailItem?.timestamp
+                }.cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
                 }
             
                 <<< DecimalRow(){
@@ -43,12 +46,18 @@ class DetailViewController: FormViewController {
                     formatter.locale = .current
                     formatter.numberStyle = .currency
                     $0.formatter = formatter
+                }.cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
+                    cell.textField?.textColor = UIColor.label
                 }
             
                 <<< TextRow() {
                     $0.tag = "summary"
                     $0.title = "Summary"
                     $0.value = detailItem?.summary
+                }.cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
+                    cell.textField?.textColor = UIColor.label
                 }
         
     }

@@ -222,10 +222,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Event)
+                let eventObj = anObject as? Event
+                if (eventObj != nil) {
+                    configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Event)
+                }
             case .move:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Event)
-                tableView.moveRow(at: indexPath!, to: newIndexPath!)
+                let eventObj = anObject as? Event
+                if (eventObj != nil) {
+                    let cell = tableView.cellForRow(at: indexPath!)
+                    if (cell != nil) {
+                        configureCell(cell!, withEvent: eventObj!)
+                        tableView.moveRow(at: indexPath!, to: newIndexPath!)
+                    }
+                }
         @unknown default:
             fatalError()
         }
