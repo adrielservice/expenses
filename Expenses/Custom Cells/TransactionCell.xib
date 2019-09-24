@@ -23,8 +23,8 @@
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2019-09-08" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Gr-7O5">
-                        <rect key="frame" x="85" y="7" width="120" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09/08" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Gr-7O5">
+                        <rect key="frame" x="85" y="7" width="59" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -43,6 +43,13 @@
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bi-Weekly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mE3-Q3-sZv">
+                        <rect key="frame" x="146" y="7" width="59" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,10 +58,11 @@
             <connections>
                 <outlet property="amountLabel" destination="uJc-y9-j1U" id="min-W9-hKs"/>
                 <outlet property="dateLabel" destination="yxO-Gr-7O5" id="Vfb-vQ-1n6"/>
+                <outlet property="frequencyLabel" destination="mE3-Q3-sZv" id="jG2-aE-tmU"/>
                 <outlet property="paidSwitch" destination="WGd-MD-opr" id="FlV-xw-j2e"/>
                 <outlet property="summaryLabel" destination="nv9-NX-5a2" id="lxV-qj-g2j"/>
             </connections>
-            <point key="canvasLocation" x="-366.39999999999998" y="-255.47226386806599"/>
+            <point key="canvasLocation" x="-366.66666666666669" y="-255.80357142857142"/>
         </tableViewCell>
     </objects>
 </document>

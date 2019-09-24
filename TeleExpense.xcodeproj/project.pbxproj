@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E326D6A3231FF1B100593076 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6A1231FF1B100593076 /* TextCell.xib */; };
 		E326D6A7231FF2BD00593076 /* PaidSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6A5231FF2BD00593076 /* PaidSwitchCell.xib */; };
 		E326D6A8231FF2BD00593076 /* AutoPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6A6231FF2BD00593076 /* AutoPaymentCell.xib */; };
 		E326D6AC231FF43400593076 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6AB231FF43400593076 /* TransactionCell.xib */; };
@@ -29,7 +28,6 @@
 		8A2BE394C85CDF549514F061 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92BFBCD19CF384738C09CADF /* Pods-Expenses.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Expenses/Pods-Expenses.debug.xcconfig"; sourceTree = "<group>"; };
 		B244B69C267604ED2F7E201B /* Pods-TeleExpense.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleExpense.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeleExpense/Pods-TeleExpense.release.xcconfig"; sourceTree = "<group>"; };
-		E326D6A1231FF1B100593076 /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		E326D6A5231FF2BD00593076 /* PaidSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaidSwitchCell.xib; sourceTree = "<group>"; };
 		E326D6A6231FF2BD00593076 /* AutoPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoPaymentCell.xib; sourceTree = "<group>"; };
 		E326D6AB231FF43400593076 /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				E3386F6623228CE000C3ADEC /* TransactionCell.swift */,
 				E326D6A6231FF2BD00593076 /* AutoPaymentCell.xib */,
 				E326D6A5231FF2BD00593076 /* PaidSwitchCell.xib */,
-				E326D6A1231FF1B100593076 /* TextCell.xib */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -185,7 +182,6 @@
 			files = (
 				E3EFA9F323044B43006365CC /* LaunchScreen.storyboard in Resources */,
 				E3EFA9F023044B43006365CC /* Assets.xcassets in Resources */,
-				E326D6A3231FF1B100593076 /* TextCell.xib in Resources */,
 				E326D6A8231FF2BD00593076 /* AutoPaymentCell.xib in Resources */,
 				E326D6A7231FF2BD00593076 /* PaidSwitchCell.xib in Resources */,
 				E3EFA9EE23044B42006365CC /* Main.storyboard in Resources */,

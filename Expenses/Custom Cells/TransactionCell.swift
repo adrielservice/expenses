@@ -32,6 +32,7 @@ class TransactionCell: UITableViewCell {
     
     @IBOutlet public weak var amountLabel: UILabel!
     @IBOutlet public weak var dateLabel: UILabel!
+    @IBOutlet public weak var frequencyLabel: UILabel!
     @IBOutlet public weak var summaryLabel: UILabel!
     @IBOutlet public weak var paidSwitch: UISwitch!
     
@@ -66,8 +67,19 @@ class TransactionCell: UITableViewCell {
             }
         }
         
-        self.amountLabel?.text = TransactionCell.currencyFormatter?.string(from: NSNumber(value: detailItem?.amount ?? 0))
-        self.summaryLabel?.text = detailItem?.summary ?? "Default summary"
+        if (detailItem?.isPaid == true && (detailItem?.amount == nil || detailItem?.amount == 0)) {
+            self.amountLabel?.text = "Not set"
+            self.amountLabel?.textColor = .systemRed
+        } else {
+            self.amountLabel?.text = TransactionCell.currencyFormatter?.string(from: NSNumber(value: detailItem?.amount ?? 0))
+        }
+        
+        self.frequencyLabel?.text = ""
+        if (detailItem?.repeatFrequency != "Never") {
+            self.frequencyLabel?.text = detailItem?.repeatFrequency
+        }
+        
+        self.summaryLabel?.text = detailItem?.summary
         self.paidSwitch?.isOn = detailItem?.isPaid ?? false
     }
     
@@ -101,6 +113,12 @@ class TransactionCell: UITableViewCell {
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        if (detailItem?.isPaid == true && detailItem?.repeatFrequency != "Never") {
+            // add a new duplicate record
+            // amount - have an option if to keep amount
+            
         }
         
     }

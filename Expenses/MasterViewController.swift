@@ -47,10 +47,40 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     @objc
     func insertNewObject(_ sender: Any) {
+        self.createNewEvent(event: nil)
+    }
+    
+    func createNewEvent(event: Event?) {
         let context = self.fetchedResultsController.managedObjectContext
         self.newEvent = Event(context: context)
         let calendar = Calendar.current
-        self.newEvent?.timestamp = calendar.startOfDay(for: Date())
+        let now = Date()
+        self.newEvent?.timestamp = calendar.startOfDay(for: now)
+        self.newEvent?.amount = 0
+        self.newEvent?.repeatFrequency = "Never"
+        
+        
+        if (event != nil && event?.repeatFrequency != "Never") {
+            self.newEvent?.summary = event?.summary
+            self.newEvent?.isAutomatic = event?.isAutomatic ?? false
+            self.newEvent?.repeatFrequency = event?.repeatFrequency
+            self.newEvent?.repeatIsSameAmount = event?.repeatIsSameAmount ?? false
+            if (self.newEvent?.repeatIsSameAmount == true) {
+                self.newEvent?.amount = event?.amount ?? 0
+            }
+            
+            if (event?.repeatFrequency == "Weekly") {
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 7, to: now)!)
+            } else if (event?.repeatFrequency == "Bi-Weekly") {
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 14, to: now)!)
+            } else if (event?.repeatFrequency == "Monthly") {
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.month, value: 1, to: now)!)
+            } else if (event?.repeatFrequency == "Annually") {
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.year, value: 1, to: now)!)
+            }
+            
+        }
+        
         self.performSegue(withIdentifier: "showDetail", sender: self)
     }
 
@@ -227,6 +257,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Event)
                 }
             case .move:
+//                let cell = tableView.cellForRow(at: indexPath!)
+//                configureCell(cell!, withEvent: eventObj!)
+//                tableView.moveRow(at: indexPath!, to: newIndexPath!)
+                
                 let eventObj = anObject as? Event
                 if (eventObj != nil) {
                     let cell = tableView.cellForRow(at: indexPath!)

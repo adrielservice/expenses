@@ -13,6 +13,8 @@ import CoreData
 class DetailViewController: FormViewController {
     
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    let repeatOptions: [String] = ["Never", "Weekly", "Bi-Weekly", "Monthly", "Annualy"]
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -42,22 +44,47 @@ class DetailViewController: FormViewController {
                     $0.useFormatterDuringInput = true
                     $0.title = "Amount"
                     $0.value = detailItem?.amount
+                    $0.add(rule: RuleSmallerThan(max: 99999))
                     let formatter = CurrencyFormatter()
+                    $0.validationOptions = .validatesOnChange
                     formatter.locale = .current
                     formatter.numberStyle = .currency
                     $0.formatter = formatter
                 }.cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor.secondaryLabel
                     cell.textField?.textColor = UIColor.label
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
+                    if !row.isValid {
+                        cell.textField?.textColor = .systemRed
+                    }
                 }
             
                 <<< TextRow() {
                     $0.tag = "summary"
                     $0.title = "Summary"
+                    $0.placeholder = "Add your description"
                     $0.value = detailItem?.summary
                 }.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = UIColor.secondaryLabel
                     cell.textField?.textColor = UIColor.label
+                }
+        
+                <<< PushRow<String>() {
+                    $0.tag = "repeats"
+                    $0.title = "Repeats"
+                    $0.value = detailItem?.repeatFrequency ?? repeatOptions[0]
+                    $0.options = repeatOptions
+                }.cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
+                    self.detailItem?.repeatFrequency = row.value
+                }
+        
+                <<< SwitchRow() {
+                    $0.tag = "repeatIsSameAmount"
+                    $0.value = detailItem?.repeatIsSameAmount
+                    $0.cellProvider = CellProvider<SwitchCell>(nibName: "AutoPaymentCell", bundle: Bundle.main)
+                }.cellSetup { (cell, row) in
+                    cell.height = { 67 }
+                    cell.textLabel?.textColor = UIColor.secondaryLabel
                 }
         
     }
@@ -84,6 +111,12 @@ class DetailViewController: FormViewController {
             
             let summaryRow: TextRow? = form.rowBy(tag: "summary")
             detailItem?.summary = summaryRow?.value
+            
+            let repeatsRow: PushRow<String>? = form.rowBy(tag: "repeats")
+            detailItem?.repeatFrequency = repeatsRow?.value
+            
+            let repeatIsSameAmountSwitchRow: SwitchRow? = form.rowBy(tag: "repeatIsSameAmount")
+            detailItem?.repeatIsSameAmount = repeatIsSameAmountSwitchRow?.value ?? false
             
             try self.managedObjectContext?.save()
         } catch {
