@@ -16,6 +16,7 @@ class TransactionCell: UITableViewCell {
     static let calendar = Calendar.current
     
     var managedObjectContext: NSManagedObjectContext? = nil
+    public var listController: MasterViewController? = nil
     
     // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
     static func initStaticVars() {
@@ -67,10 +68,11 @@ class TransactionCell: UITableViewCell {
             }
         }
         
-        if (detailItem?.isPaid == true && (detailItem?.amount == nil || detailItem?.amount == 0)) {
+        if (detailItem?.isPaid != true && (detailItem?.amount == nil || detailItem?.amount == 0)) {
             self.amountLabel?.text = "Not set"
             self.amountLabel?.textColor = .systemRed
         } else {
+            self.amountLabel?.textColor = UIColor.label
             self.amountLabel?.text = TransactionCell.currencyFormatter?.string(from: NSNumber(value: detailItem?.amount ?? 0))
         }
         
@@ -117,8 +119,9 @@ class TransactionCell: UITableViewCell {
         
         if (detailItem?.isPaid == true && detailItem?.repeatFrequency != "Never") {
             // add a new duplicate record
-            // amount - have an option if to keep amount
-            
+            if (listController != nil) {
+                listController?.createNewEvent(event: self.detailItem)
+            }
         }
         
     }

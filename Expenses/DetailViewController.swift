@@ -79,6 +79,10 @@ class DetailViewController: FormViewController {
                 }
         
                 <<< SwitchRow() {
+                    $0.hidden = Condition.function(["repeats"], { form in
+                        let repeatValue = (form.rowBy(tag: "repeats") as? PushRow<String>)?.value ?? "Never"
+                        return (repeatValue == "Never")
+                    })
                     $0.tag = "repeatIsSameAmount"
                     $0.value = detailItem?.repeatIsSameAmount
                     $0.cellProvider = CellProvider<SwitchCell>(nibName: "AutoPaymentCell", bundle: Bundle.main)

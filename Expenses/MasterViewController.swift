@@ -70,13 +70,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }
             
             if (event?.repeatFrequency == "Weekly") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 7, to: now)!)
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 7, to: event?.timestamp ?? now)!)
             } else if (event?.repeatFrequency == "Bi-Weekly") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 14, to: now)!)
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 14, to: event?.timestamp ?? now)!)
             } else if (event?.repeatFrequency == "Monthly") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.month, value: 1, to: now)!)
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.month, value: 1, to: event?.timestamp ?? now)!)
             } else if (event?.repeatFrequency == "Annually") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.year, value: 1, to: now)!)
+                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.year, value: 1, to: event?.timestamp ?? now)!)
             }
             
         }
@@ -176,6 +176,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureCell(_ cell: UITableViewCell, withEvent event: Event) {
         let transactionCell = cell as! TransactionCell
         transactionCell.detailItem = event
+        transactionCell.listController = self
         transactionCell.managedObjectContext = self.managedObjectContext
     }
     
