@@ -6,6 +6,6 @@ target 'TeleExpense' do
   use_frameworks!
 
   # Pods for Expenses
-  pod 'Eureka'
+  pod 'Eureka', "~> 5.2.1"
   
 end

@@ -18,17 +18,21 @@ class DetailViewController: FormViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
+        
+        SwitchRow.defaultCellUpdate = { cell, row in
+            cell.textLabel?.textColor = UIColor.secondaryLabel
+        }
+        
         form +++
             
             Section()
             
                 <<< SwitchRow() {
                     $0.tag = "paidSwitch"
+                    $0.title = "Payment Processed"
                     $0.value = detailItem?.isPaid
-                    $0.cellProvider = CellProvider<SwitchCell>(nibName: "PaidSwitchCell", bundle: Bundle.main)
-                }.cellSetup { (cell, row) in
+                }.cellUpdate { (cell, row) in
                     cell.height = { 67 }
-                    cell.textLabel?.textColor = UIColor.secondaryLabel
                 }
             
                 <<< DateRow() {
@@ -85,10 +89,8 @@ class DetailViewController: FormViewController {
                     })
                     $0.tag = "repeatIsSameAmount"
                     $0.value = detailItem?.repeatIsSameAmount
-                    $0.cellProvider = CellProvider<SwitchCell>(nibName: "AutoPaymentCell", bundle: Bundle.main)
                 }.cellSetup { (cell, row) in
                     cell.height = { 67 }
-                    cell.textLabel?.textColor = UIColor.secondaryLabel
                 }
         
     }
