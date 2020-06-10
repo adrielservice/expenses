@@ -16,7 +16,7 @@ class TransactionCell: UITableViewCell {
     static let calendar = Calendar.current
     
     var managedObjectContext: NSManagedObjectContext? = nil
-    public var listController: MasterViewController? = nil
+    public var listController: TxnsViewController? = nil
     
     // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
     static func initStaticVars() {
@@ -47,7 +47,6 @@ class TransactionCell: UITableViewCell {
         if (TransactionCell.dateFormatter == nil || TransactionCell.currencyFormatter == nil) {
             TransactionCell.initStaticVars()
         }
-        
         
         let today = TransactionCell.calendar.startOfDay(for: Date())
         self.dateLabel.font = UIFont.systemFont(ofSize: self.dateLabel.font.pointSize)

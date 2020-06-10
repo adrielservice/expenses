@@ -10,7 +10,7 @@ import UIKit
 import Eureka
 import CoreData
 
-class TxnDetailViewController: FormViewController {
+class TxnDetailViewController : FormViewController {
     
     var managedObjectContext: NSManagedObjectContext? = nil
     

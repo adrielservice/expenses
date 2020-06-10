@@ -10,10 +10,14 @@
 		E326D6AC231FF43400593076 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6AB231FF43400593076 /* TransactionCell.xib */; };
 		E3386F6723228CE000C3ADEC /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3386F6623228CE000C3ADEC /* TransactionCell.swift */; };
 		E38CEB90EC69D6479359BCC7 /* Pods_TeleExpense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243A368A5DB63415EC15621E /* Pods_TeleExpense.framework */; };
+		E3BAC3912490A925000DDE7B /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */; };
+		E3BAC3932490AC05000DDE7B /* AccountsViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3922490AC05000DDE7B /* AccountsViewControllerTableViewController.swift */; };
+		E3BAC3982490AFFB000DDE7B /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3962490AFFB000DDE7B /* AccountCell.swift */; };
+		E3BAC3992490AFFB000DDE7B /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3BAC3972490AFFB000DDE7B /* AccountCell.xib */; };
 		E3EFA9E423044B42006365CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9E323044B42006365CC /* AppDelegate.swift */; };
 		E3EFA9E723044B42006365CC /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9E523044B42006365CC /* Expenses.xcdatamodeld */; };
-		E3EFA9E923044B42006365CC /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9E823044B42006365CC /* MasterViewController.swift */; };
-		E3EFA9EB23044B42006365CC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9EA23044B42006365CC /* DetailViewController.swift */; };
+		E3EFA9E923044B42006365CC /* TxnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9E823044B42006365CC /* TxnsViewController.swift */; };
+		E3EFA9EB23044B42006365CC /* TxnDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9EA23044B42006365CC /* TxnDetailViewController.swift */; };
 		E3EFA9EE23044B42006365CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EFA9EC23044B42006365CC /* Main.storyboard */; };
 		E3EFA9F023044B43006365CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3EFA9EF23044B43006365CC /* Assets.xcassets */; };
 		E3EFA9F323044B43006365CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EFA9F123044B43006365CC /* LaunchScreen.storyboard */; };
@@ -28,11 +32,15 @@
 		B244B69C267604ED2F7E201B /* Pods-TeleExpense.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleExpense.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeleExpense/Pods-TeleExpense.release.xcconfig"; sourceTree = "<group>"; };
 		E326D6AB231FF43400593076 /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		E3386F6623228CE000C3ADEC /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		E3BAC3922490AC05000DDE7B /* AccountsViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		E3BAC3962490AFFB000DDE7B /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		E3BAC3972490AFFB000DDE7B /* AccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountCell.xib; sourceTree = "<group>"; };
 		E3EFA9E023044B42006365CC /* TeleExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeleExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3EFA9E323044B42006365CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3EFA9E623044B42006365CC /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
-		E3EFA9E823044B42006365CC /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		E3EFA9EA23044B42006365CC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E3EFA9E823044B42006365CC /* TxnsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxnsViewController.swift; sourceTree = "<group>"; };
+		E3EFA9EA23044B42006365CC /* TxnDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxnDetailViewController.swift; sourceTree = "<group>"; };
 		E3EFA9ED23044B42006365CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3EFA9EF23044B43006365CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3EFA9F223044B43006365CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +82,8 @@
 		E326D6A0231FF19A00593076 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E3BAC3972490AFFB000DDE7B /* AccountCell.xib */,
+				E3BAC3962490AFFB000DDE7B /* AccountCell.swift */,
 				E326D6AB231FF43400593076 /* TransactionCell.xib */,
 				E3386F6623228CE000C3ADEC /* TransactionCell.swift */,
 			);
@@ -103,8 +113,10 @@
 			children = (
 				E326D6A0231FF19A00593076 /* Custom Cells */,
 				E3EFA9E323044B42006365CC /* AppDelegate.swift */,
-				E3EFA9E823044B42006365CC /* MasterViewController.swift */,
-				E3EFA9EA23044B42006365CC /* DetailViewController.swift */,
+				E3BAC3922490AC05000DDE7B /* AccountsViewControllerTableViewController.swift */,
+				E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */,
+				E3EFA9E823044B42006365CC /* TxnsViewController.swift */,
+				E3EFA9EA23044B42006365CC /* TxnDetailViewController.swift */,
 				E3EFA9EC23044B42006365CC /* Main.storyboard */,
 				E3EFA9EF23044B43006365CC /* Assets.xcassets */,
 				E3EFA9F123044B43006365CC /* LaunchScreen.storyboard */,
@@ -174,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3BAC3992490AFFB000DDE7B /* AccountCell.xib in Resources */,
 				E3EFA9F323044B43006365CC /* LaunchScreen.storyboard in Resources */,
 				E3EFA9F023044B43006365CC /* Assets.xcassets in Resources */,
 				E3EFA9EE23044B42006365CC /* Main.storyboard in Resources */,
@@ -228,10 +241,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3EFA9E723044B42006365CC /* Expenses.xcdatamodeld in Sources */,
+				E3BAC3982490AFFB000DDE7B /* AccountCell.swift in Sources */,
 				E3EFA9E423044B42006365CC /* AppDelegate.swift in Sources */,
-				E3EFA9E923044B42006365CC /* MasterViewController.swift in Sources */,
+				E3EFA9E923044B42006365CC /* TxnsViewController.swift in Sources */,
+				E3BAC3912490A925000DDE7B /* AccountDetailViewController.swift in Sources */,
+				E3BAC3932490AC05000DDE7B /* AccountsViewControllerTableViewController.swift in Sources */,
 				E3386F6723228CE000C3ADEC /* TransactionCell.swift in Sources */,
-				E3EFA9EB23044B42006365CC /* DetailViewController.swift in Sources */,
+				E3EFA9EB23044B42006365CC /* TxnDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

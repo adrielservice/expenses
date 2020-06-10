@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class TxnsViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: TxnDetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
     
     var newEvent: Event? = nil
@@ -24,7 +24,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
         self.tableView.rowHeight = 60
         let transactionCell = UINib(nibName: "TransactionCell", bundle: nil)
-        self.tableView.register(transactionCell, forCellReuseIdentifier: "MyCell")
+        self.tableView.register(transactionCell, forCellReuseIdentifier: "transactionCell")
         
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl!.addTarget(self, action: #selector(refreshTableData(_:)), for: .valueChanged)
@@ -36,7 +36,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? TxnDetailViewController
         }
     }
 
@@ -93,7 +93,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 object = fetchedResultsController.object(at: indexPath)
             }
             
-            let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+            let controller = (segue.destination as! UINavigationController).topViewController as! TxnDetailViewController
             controller.managedObjectContext = self.managedObjectContext
             controller.detailItem = object
             controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
