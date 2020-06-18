@@ -20,7 +20,7 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        self.tableView.rowHeight = 60
+        self.tableView.rowHeight = 70
         let transactionCell = UINib(nibName: "AccountCell", bundle: nil)
         self.tableView.register(transactionCell, forCellReuseIdentifier: "accountCell")
         
@@ -140,7 +140,7 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
 
     func configureCell(_ cell: UITableViewCell, withAccount account: Account) {
         let accountCell = cell as! AccountCell
-        accountCell.detailItem = account
+        accountCell.account = account
         accountCell.listController = self
         accountCell.managedObjectContext = self.managedObjectContext
     }

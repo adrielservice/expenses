@@ -13,21 +13,25 @@ class AccountCell: UITableViewCell {
     
     public var listController: AccountsViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet public weak var statusLabel: UILabel!
+    @IBOutlet public weak var addressLabel: UILabel!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    var detailItem: Account? {
+    var account: Account? {
         didSet {
             configureView()
         }
     }
     
     func configureView() {
-       
+        nameLabel.text = account?.name
+        statusLabel.text = account?.status
+        addressLabel.text = account?.address
     }
     
 }

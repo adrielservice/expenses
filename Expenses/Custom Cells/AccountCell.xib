@@ -40,6 +40,11 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLabel" destination="gWF-yq-EkB" id="UkL-wG-hnE"/>
+                <outlet property="nameLabel" destination="89c-PZ-gSN" id="Tfk-Az-cb9"/>
+                <outlet property="statusLabel" destination="VAH-a9-MmD" id="jdc-oG-0ee"/>
+            </connections>
             <point key="canvasLocation" x="73.913043478260875" y="57.924107142857139"/>
         </tableViewCell>
     </objects>
