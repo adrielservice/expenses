@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3139231249B09230099E75C /* AccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3139230249B09230099E75C /* AccountCreateViewController.swift */; };
 		E326D6AC231FF43400593076 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6AB231FF43400593076 /* TransactionCell.xib */; };
 		E3386F6723228CE000C3ADEC /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3386F6623228CE000C3ADEC /* TransactionCell.swift */; };
 		E38CEB90EC69D6479359BCC7 /* Pods_TeleExpense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243A368A5DB63415EC15621E /* Pods_TeleExpense.framework */; };
 		E3BAC3912490A925000DDE7B /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */; };
-		E3BAC3932490AC05000DDE7B /* AccountsViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3922490AC05000DDE7B /* AccountsViewControllerTableViewController.swift */; };
+		E3BAC3932490AC05000DDE7B /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3922490AC05000DDE7B /* AccountsViewController.swift */; };
 		E3BAC3982490AFFB000DDE7B /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3962490AFFB000DDE7B /* AccountCell.swift */; };
 		E3BAC3992490AFFB000DDE7B /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3BAC3972490AFFB000DDE7B /* AccountCell.xib */; };
 		E3EFA9E423044B42006365CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EFA9E323044B42006365CC /* AppDelegate.swift */; };
@@ -30,10 +31,11 @@
 		8A2BE394C85CDF549514F061 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92BFBCD19CF384738C09CADF /* Pods-Expenses.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Expenses/Pods-Expenses.debug.xcconfig"; sourceTree = "<group>"; };
 		B244B69C267604ED2F7E201B /* Pods-TeleExpense.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleExpense.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeleExpense/Pods-TeleExpense.release.xcconfig"; sourceTree = "<group>"; };
+		E3139230249B09230099E75C /* AccountCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreateViewController.swift; sourceTree = "<group>"; };
 		E326D6AB231FF43400593076 /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		E3386F6623228CE000C3ADEC /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
-		E3BAC3922490AC05000DDE7B /* AccountsViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		E3BAC3922490AC05000DDE7B /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		E3BAC3962490AFFB000DDE7B /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		E3BAC3972490AFFB000DDE7B /* AccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountCell.xib; sourceTree = "<group>"; };
 		E3EFA9E023044B42006365CC /* TeleExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeleExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +115,8 @@
 			children = (
 				E326D6A0231FF19A00593076 /* Custom Cells */,
 				E3EFA9E323044B42006365CC /* AppDelegate.swift */,
-				E3BAC3922490AC05000DDE7B /* AccountsViewControllerTableViewController.swift */,
+				E3BAC3922490AC05000DDE7B /* AccountsViewController.swift */,
+				E3139230249B09230099E75C /* AccountCreateViewController.swift */,
 				E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */,
 				E3EFA9E823044B42006365CC /* TxnsViewController.swift */,
 				E3EFA9EA23044B42006365CC /* TxnDetailViewController.swift */,
@@ -244,8 +247,9 @@
 				E3BAC3982490AFFB000DDE7B /* AccountCell.swift in Sources */,
 				E3EFA9E423044B42006365CC /* AppDelegate.swift in Sources */,
 				E3EFA9E923044B42006365CC /* TxnsViewController.swift in Sources */,
+				E3139231249B09230099E75C /* AccountCreateViewController.swift in Sources */,
 				E3BAC3912490A925000DDE7B /* AccountDetailViewController.swift in Sources */,
-				E3BAC3932490AC05000DDE7B /* AccountsViewControllerTableViewController.swift in Sources */,
+				E3BAC3932490AC05000DDE7B /* AccountsViewController.swift in Sources */,
 				E3386F6723228CE000C3ADEC /* TransactionCell.swift in Sources */,
 				E3EFA9EB23044B42006365CC /* TxnDetailViewController.swift in Sources */,
 			);

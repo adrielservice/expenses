@@ -11,7 +11,7 @@ import CoreData
 
 class AccountCell: UITableViewCell {
     
-    public var listController: AccountsViewControllerTableViewController? = nil
+    public var listController: AccountsViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
     override func setSelected(_ selected: Bool, animated: Bool) {

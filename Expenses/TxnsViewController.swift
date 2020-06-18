@@ -13,8 +13,6 @@ class TxnsViewController: UITableViewController, NSFetchedResultsControllerDeleg
 
     var detailViewController: TxnDetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-    
-    var newEvent: Event? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,56 +29,20 @@ class TxnsViewController: UITableViewController, NSFetchedResultsControllerDeleg
         self.tableView.refreshControl!.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         self.tableView.refreshControl!.attributedTitle = NSAttributedString(string: "Fetching Transaction Data ...")
 
-
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton
-        if let split = splitViewController {
-            let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? TxnDetailViewController
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
 
     @objc
     func insertNewObject(_ sender: Any) {
-        self.createNewEvent(event: nil)
+        self.createNewEvent()
     }
     
-    func createNewEvent(event: Event?) {
-        let context = self.fetchedResultsController.managedObjectContext
-        self.newEvent = Event(context: context)
-        let calendar = Calendar.current
-        let now = Date()
-        self.newEvent?.timestamp = calendar.startOfDay(for: now)
-        self.newEvent?.amount = 0
-        self.newEvent?.repeatFrequency = "Never"
-        
-        
-        if (event != nil && event?.repeatFrequency != "Never") {
-            self.newEvent?.summary = event?.summary
-            self.newEvent?.isAutomatic = event?.isAutomatic ?? false
-            self.newEvent?.repeatFrequency = event?.repeatFrequency
-            self.newEvent?.repeatIsSameAmount = event?.repeatIsSameAmount ?? false
-            if (self.newEvent?.repeatIsSameAmount == true) {
-                self.newEvent?.amount = event?.amount ?? 0
-            }
-            
-            if (event?.repeatFrequency == "Weekly") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 7, to: event?.timestamp ?? now)!)
-            } else if (event?.repeatFrequency == "Bi-Weekly") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.day, value: 14, to: event?.timestamp ?? now)!)
-            } else if (event?.repeatFrequency == "Monthly") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.month, value: 1, to: event?.timestamp ?? now)!)
-            } else if (event?.repeatFrequency == "Annually") {
-                self.newEvent?.timestamp = calendar.startOfDay(for: calendar.date(byAdding: Calendar.Component.year, value: 1, to: event?.timestamp ?? now)!)
-            }
-            
-        }
-        
+    func createNewEvent() {
         self.performSegue(withIdentifier: "showDetail", sender: self)
     }
 
@@ -88,14 +50,11 @@ class TxnsViewController: UITableViewController, NSFetchedResultsControllerDeleg
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            var object = self.newEvent
-            if let indexPath = tableView.indexPathForSelectedRow {
-                object = fetchedResultsController.object(at: indexPath)
-            }
-            
-            let controller = (segue.destination as! UINavigationController).topViewController as! TxnDetailViewController
+            let controller = segue.destination as! TxnDetailViewController
             controller.managedObjectContext = self.managedObjectContext
-            controller.detailItem = object
+            if let indexPath = tableView.indexPathForSelectedRow {
+                controller.detailItem = fetchedResultsController.object(at: indexPath)
+            }
             controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
@@ -144,7 +103,7 @@ class TxnsViewController: UITableViewController, NSFetchedResultsControllerDeleg
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath)
         cell.showsReorderControl = true
         cell.shouldIndentWhileEditing = false
         

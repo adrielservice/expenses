@@ -119,7 +119,7 @@ class TransactionCell: UITableViewCell {
         if (detailItem?.isPaid == true && detailItem?.repeatFrequency != "Never") {
             // add a new duplicate record
             if (listController != nil) {
-                listController?.createNewEvent(event: self.detailItem)
+                //listController?.createNewEvent(event: self.detailItem)
             }
         }
         

@@ -15,6 +15,15 @@ class TxnDetailViewController : FormViewController {
     var managedObjectContext: NSManagedObjectContext? = nil
     
     let repeatOptions: [String] = ["Never", "Weekly", "Bi-Weekly", "Monthly", "Annualy"]
+    
+    func createNewEvent() {
+        detailItem = Event(context: self.managedObjectContext!)
+        let calendar = Calendar.current
+        let now = Date()
+        detailItem?.timestamp = calendar.startOfDay(for: now)
+        detailItem?.amount = 0
+        detailItem?.repeatFrequency = "Never"
+    }
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -102,6 +111,13 @@ class TxnDetailViewController : FormViewController {
         tableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if (detailItem == nil) {
+            createNewEvent()
+        }
+        configureView()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         do {
@@ -133,11 +149,7 @@ class TxnDetailViewController : FormViewController {
         }
     }
 
-    var detailItem: Event? {
-        didSet {
-            configureView()
-        }
-    }
+    var detailItem: Event?
     
     class CurrencyFormatter : NumberFormatter, FormatterProtocol {
         override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, range rangep: UnsafeMutablePointer<NSRange>?) throws {

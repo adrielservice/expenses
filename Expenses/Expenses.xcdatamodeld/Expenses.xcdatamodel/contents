@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -33,8 +35,8 @@
         <userInfo/>
     </entity>
     <elements>
-        <element name="Event" positionX="138.58984375" positionY="-32.109375" width="128" height="178"/>
-        <element name="Account" positionX="-317.76953125" positionY="155.0234375" width="128" height="148"/>
+        <element name="Account" positionX="-317.76953125" positionY="155.0234375" width="128" height="178"/>
         <element name="AccountHistory" positionX="144" positionY="270" width="128" height="178"/>
+        <element name="Event" positionX="138.58984375" positionY="-32.109375" width="128" height="178"/>
     </elements>
 </model>

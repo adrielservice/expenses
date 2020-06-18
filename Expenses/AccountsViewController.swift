@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AccountsViewControllerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class AccountsViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var managedObjectContext: NSManagedObjectContext? = nil
     var detailViewController: TxnDetailViewController? = nil
@@ -44,22 +44,24 @@ class AccountsViewControllerTableViewController: UITableViewController, NSFetche
     }
     
     func createNewEvent(event: Event?) {
-        self.performSegue(withIdentifier: "showAccoutnDetail", sender: self)
+        self.performSegue(withIdentifier: "createAccount", sender: self)
     }
 
     // MARK: - Segues
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showAccountDetail" {
+        
+        if (segue.identifier == "createAccount") {
+            let controller = segue.destination as! AccountCreateViewController
+            controller.managedObjectContext = self.managedObjectContext
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        } else if (segue.identifier == "showAccountDetails") {
             var account : Account? = nil
             if let indexPath = tableView.indexPathForSelectedRow {
                 account = fetchedResultsController.object(at: indexPath)
             }
-            
-            let controller = (segue.destination as! UINavigationController).topViewController as! AccountDetailViewController
+            let controller = segue.destination as! AccountDetailViewController
             controller.managedObjectContext = self.managedObjectContext
             controller.account = account
-            controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
     }
@@ -117,7 +119,7 @@ class AccountsViewControllerTableViewController: UITableViewController, NSFetche
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showDetail", sender: self)
+        self.performSegue(withIdentifier: "showAccountDetails", sender: self)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
