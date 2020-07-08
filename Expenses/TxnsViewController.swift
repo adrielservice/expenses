@@ -12,13 +12,18 @@ import CoreData
 class TxnsViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var detailViewController: TxnDetailViewController? = nil
+    
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    var account: Account? = nil
+    
+    var tenant: Tenant? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
+        // navigationItem.leftBarButtonItem = editButtonItem
 
         self.tableView.rowHeight = 60
         let transactionCell = UINib(nibName: "TransactionCell", bundle: nil)
@@ -43,13 +48,13 @@ class TxnsViewController: UITableViewController, NSFetchedResultsControllerDeleg
     }
     
     func createNewEvent() {
-        self.performSegue(withIdentifier: "showDetail", sender: self)
+        self.performSegue(withIdentifier: "viewTxnDetails", sender: self)
     }
 
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "viewTxnDetails" {
             let controller = segue.destination as! TxnDetailViewController
             controller.managedObjectContext = self.managedObjectContext
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -113,7 +118,7 @@ class TxnsViewController: UITableViewController, NSFetchedResultsControllerDeleg
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showDetail", sender: self)
+        self.performSegue(withIdentifier: "viewTxnDetails", sender: self)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

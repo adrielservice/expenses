@@ -2,25 +2,10 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
-        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
-        <relationship name="bills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="account" inverseEntity="Event"/>
-        <relationship name="history" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountHistory" inverseName="account" inverseEntity="AccountHistory"/>
-    </entity>
-    <entity name="AccountHistory" representedClassName="AccountHistory" syncable="YES" codeGenerationType="class">
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="monthlyPayment" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="percentage" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="phone" attributeType="String"/>
-        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="tenantDriverLicense" optional="YES" attributeType="String"/>
-        <attribute name="tenantName" attributeType="String"/>
-        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="history" inverseEntity="Account"/>
+        <relationship name="tenants" toMany="YES" deletionRule="Nullify" destinationEntity="Tenant" inverseName="account" inverseEntity="Tenant"/>
     </entity>
     <entity name="Event" representedClassName="Event" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -31,12 +16,29 @@
         <attribute name="repeatIsSameAmount" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date"/>
-        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="bills" inverseEntity="Account"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account"/>
         <userInfo/>
     </entity>
+    <entity name="Tenant" representedClassName="Tenant" syncable="YES" codeGenerationType="class">
+        <attribute name="appliedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="driverLicense" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="leaseEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="leaseStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="monthlyPayment" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="percentage" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="phone" attributeType="String"/>
+        <attribute name="status" attributeType="String"/>
+        <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="tenants" inverseEntity="Account"/>
+        <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Tenant"/>
+        </fetchedProperty>
+    </entity>
     <elements>
-        <element name="Account" positionX="-317.76953125" positionY="155.0234375" width="128" height="178"/>
-        <element name="AccountHistory" positionX="144" positionY="270" width="128" height="178"/>
+        <element name="Account" positionX="-317.76953125" positionY="155.0234375" width="128" height="118"/>
         <element name="Event" positionX="138.58984375" positionY="-32.109375" width="128" height="178"/>
+        <element name="Tenant" positionX="152.39453125" positionY="337.875" width="128" height="251"/>
     </elements>
 </model>

@@ -10,6 +10,8 @@
 		E3139231249B09230099E75C /* AccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3139230249B09230099E75C /* AccountCreateViewController.swift */; };
 		E326D6AC231FF43400593076 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326D6AB231FF43400593076 /* TransactionCell.xib */; };
 		E3386F6723228CE000C3ADEC /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3386F6623228CE000C3ADEC /* TransactionCell.swift */; };
+		E33D33F124AD06A800E43420 /* TenantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D33F024AD06A800E43420 /* TenantDetailViewController.swift */; };
+		E33D33F324AD07B700E43420 /* TenantCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D33F224AD07B700E43420 /* TenantCreateViewController.swift */; };
 		E38CEB90EC69D6479359BCC7 /* Pods_TeleExpense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243A368A5DB63415EC15621E /* Pods_TeleExpense.framework */; };
 		E3BAC3912490A925000DDE7B /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */; };
 		E3BAC3932490AC05000DDE7B /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BAC3922490AC05000DDE7B /* AccountsViewController.swift */; };
@@ -34,6 +36,8 @@
 		E3139230249B09230099E75C /* AccountCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreateViewController.swift; sourceTree = "<group>"; };
 		E326D6AB231FF43400593076 /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		E3386F6623228CE000C3ADEC /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		E33D33F024AD06A800E43420 /* TenantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantDetailViewController.swift; sourceTree = "<group>"; };
+		E33D33F224AD07B700E43420 /* TenantCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantCreateViewController.swift; sourceTree = "<group>"; };
 		E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		E3BAC3922490AC05000DDE7B /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		E3BAC3962490AFFB000DDE7B /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 				E3BAC3922490AC05000DDE7B /* AccountsViewController.swift */,
 				E3139230249B09230099E75C /* AccountCreateViewController.swift */,
 				E3BAC3902490A925000DDE7B /* AccountDetailViewController.swift */,
+				E33D33F224AD07B700E43420 /* TenantCreateViewController.swift */,
+				E33D33F024AD06A800E43420 /* TenantDetailViewController.swift */,
 				E3EFA9E823044B42006365CC /* TxnsViewController.swift */,
 				E3EFA9EA23044B42006365CC /* TxnDetailViewController.swift */,
 				E3EFA9EC23044B42006365CC /* Main.storyboard */,
@@ -243,10 +249,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33D33F124AD06A800E43420 /* TenantDetailViewController.swift in Sources */,
 				E3EFA9E723044B42006365CC /* Expenses.xcdatamodeld in Sources */,
 				E3BAC3982490AFFB000DDE7B /* AccountCell.swift in Sources */,
 				E3EFA9E423044B42006365CC /* AppDelegate.swift in Sources */,
 				E3EFA9E923044B42006365CC /* TxnsViewController.swift in Sources */,
+				E33D33F324AD07B700E43420 /* TenantCreateViewController.swift in Sources */,
 				E3139231249B09230099E75C /* AccountCreateViewController.swift in Sources */,
 				E3BAC3912490A925000DDE7B /* AccountDetailViewController.swift in Sources */,
 				E3BAC3932490AC05000DDE7B /* AccountsViewController.swift in Sources */,

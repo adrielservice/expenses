@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Accounts View Controller-->
+        <!--Accounts-->
         <scene sceneID="vty-aP-f4i">
             <objects>
                 <tableViewController id="wbj-SV-M7I" customClass="AccountsViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                             <outlet property="delegate" destination="wbj-SV-M7I" id="nPo-34-p9X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="LH0-b3-tM8">
+                    <navigationItem key="navigationItem" title="Accounts" id="LH0-b3-tM8">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="grE-42-2ws">
                             <connections>
                                 <segue destination="SGG-4q-dFi" kind="show" identifier="createAccount" id="305-4c-hQu"/>
@@ -61,6 +61,32 @@
             </objects>
             <point key="canvasLocation" x="1868" y="-1664"/>
         </scene>
+        <!--Tenant Detail View Controller-->
+        <scene sceneID="J4t-2m-upw">
+            <objects>
+                <viewController id="oQY-CO-VQh" customClass="TenantDetailViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hsy-iN-tjn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dg-IQ-hOU">
+                                <rect key="frame" x="151" y="195" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="View Tenant Txn"/>
+                                <connections>
+                                    <segue destination="Caq-8u-UrL" kind="show" identifier="viewTenantTxns" id="kqr-cW-3lR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9od-dA-AK7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="r8o-UM-XaV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sNM-dA-vZi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3122" y="-974"/>
+        </scene>
         <!--Master-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
@@ -77,22 +103,53 @@
             </objects>
             <point key="canvasLocation" x="-345" y="-1328"/>
         </scene>
-        <!--Detail-->
-        <scene sceneID="yUG-lL-AsK">
+        <!--Txns View Controller-->
+        <scene sceneID="eO6-HH-ta4">
             <objects>
-                <viewController title="Detail" id="JEX-9P-axG" customClass="TxnDetailViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MQY-Ps-e8C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                <tableViewController id="Caq-8u-UrL" customClass="TxnsViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6sk-pE-z13">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="fLt-Ct-eh4"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Transaction Details" id="mOI-FS-AaM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="R4t-NF-9Vr" customClass="TransactionCell" customModule="TeleExpense" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R4t-NF-9Vr" id="05s-8h-Z1t">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="TVo-jP-jtj" kind="show" identifier="viewTxnDetails" id="gen-ZB-sba"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Caq-8u-UrL" id="96k-9h-XbA"/>
+                            <outlet property="delegate" destination="Caq-8u-UrL" id="E4k-eO-9zC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="aMg-mR-Cjx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rBQ-cf-Ckj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3901" y="-979"/>
+            <point key="canvasLocation" x="3122" y="-198"/>
+        </scene>
+        <!--Txn Detail View Controller-->
+        <scene sceneID="6FU-a7-mwS">
+            <objects>
+                <viewController id="TVo-jP-jtj" customClass="TxnDetailViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hRb-l8-pzw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="VFd-6i-VYT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yRZ-Fk-95E"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bv6-TA-4op" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4271" y="-198"/>
         </scene>
         <!--Account Detail View Controller-->
         <scene sceneID="WCN-Q2-L6h">
@@ -101,6 +158,32 @@
                     <view key="view" contentMode="scaleToFill" id="tbF-Q8-chS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHv-jM-KXF">
+                                <rect key="frame" x="72" y="276" width="271" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tenant Details"/>
+                                <connections>
+                                    <segue destination="oQY-CO-VQh" kind="show" identifier="viewTenantDetails" id="wIZ-ge-Hb7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsa-dS-2Af">
+                                <rect key="frame" x="72" y="229" width="271" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="New Tenant"/>
+                                <connections>
+                                    <segue destination="HAZ-lR-j9o" kind="show" identifier="createNewTenant" id="OGS-QM-hsF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14g-jc-zBK">
+                                <rect key="frame" x="72" y="323" width="271" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="View Transactions"/>
+                                <connections>
+                                    <segue destination="Caq-8u-UrL" kind="show" identifier="viewAccountTxns" id="VkA-B1-eU2"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="OlA-pP-k0y"/>
                     </view>
@@ -108,42 +191,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXL-Al-1eO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1859" y="-990"/>
+            <point key="canvasLocation" x="1857.9710144927537" y="-990.40178571428567"/>
         </scene>
-        <!--Master-->
-        <scene sceneID="smW-Zh-WAh">
+        <!--Tenant Create View Controller-->
+        <scene sceneID="ALg-3e-xFK">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="TxnsViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="transactionCell" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" id="r7i-6Z-zg0">
+                <viewController id="HAZ-lR-j9o" customClass="TenantCreateViewController" customModule="TeleExpense" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9jw-xi-zrG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="MyCell" rowHeight="100" id="WCw-Qf-5nD" customClass="TransactionCell" customModule="TeleExpense" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <segue destination="JEX-9P-axG" kind="show" identifier="showTxnDetail" id="kVu-uk-IPO"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="7bK-jq-Zjz" id="Gho-Na-rnu"/>
-                            <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Monthly Expenses" id="Zdf-7t-Un8"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="F2f-hx-MvO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eoW-eI-Ok7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NUY-5m-DmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2904" y="-979"/>
+            <point key="canvasLocation" x="3122" y="-1664"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VkA-B1-eU2"/>
+    </inferredMetricsTieBreakers>
 </document>

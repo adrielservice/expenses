@@ -154,10 +154,10 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
         
         let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
         fetchRequest.fetchBatchSize = 100
-        let sortTimeDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
-        let sortPaidDescriptor = NSSortDescriptor(key: "status", ascending: true)
+        // let sortTimeDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
+        let sortStatusDescriptor = NSSortDescriptor(key: "status", ascending: true)
         
-        fetchRequest.sortDescriptors = [sortPaidDescriptor, sortTimeDescriptor]
+        fetchRequest.sortDescriptors = [sortStatusDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".

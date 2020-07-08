@@ -42,17 +42,19 @@ class AccountCreateViewController : FormViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         do {
-            let account = Account(context: self.managedObjectContext!)
             let accountNameRow: TextRow? = form.rowBy(tag: "accountName")
-            account.name = accountNameRow?.value
-            
-            let addressRow: TextRow? = form.rowBy(tag: "accountAddress")
-            account.address = addressRow?.value
-            
-            account.createDate = Date()
-            account.status = "CREATED"
-            
-            try self.managedObjectContext?.save()
+            let name = accountNameRow!.value
+            if ((name != nil) && !name!.isEmpty) {
+                let account = Account(context: self.managedObjectContext!)
+                account.name = name
+                
+                let addressRow: TextRow? = form.rowBy(tag: "accountAddress")
+                account.address = addressRow?.value
+                
+                account.status = "AVAILABLE"
+                
+                try self.managedObjectContext?.save()
+            }
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
