@@ -42,6 +42,14 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JY8-v3-FNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Scm-v3-pjb">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="View Transcations"/>
+                    <connections>
+                        <segue destination="Caq-8u-UrL" kind="show" identifier="viewTxns" id="bHe-uD-neK"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="604" y="-1329"/>
         </scene>
@@ -133,7 +141,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rBQ-cf-Ckj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3122" y="-198"/>
+            <point key="canvasLocation" x="1858" y="100"/>
         </scene>
         <!--Txn Detail View Controller-->
         <scene sceneID="6FU-a7-mwS">
@@ -149,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bv6-TA-4op" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4271" y="-198"/>
+            <point key="canvasLocation" x="3122" y="100"/>
         </scene>
         <!--Account Detail View Controller-->
         <scene sceneID="WCN-Q2-L6h">
@@ -211,6 +219,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VkA-B1-eU2"/>
+        <segue reference="bHe-uD-neK"/>
     </inferredMetricsTieBreakers>
 </document>

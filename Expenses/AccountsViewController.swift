@@ -16,9 +16,6 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
 
         self.tableView.rowHeight = 70
         let transactionCell = UINib(nibName: "AccountCell", bundle: nil)
@@ -57,11 +54,18 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
         } else if (segue.identifier == "showAccountDetails") {
             var account : Account? = nil
             if let indexPath = tableView.indexPathForSelectedRow {
-                account = fetchedResultsController.object(at: indexPath)
+                var updatedIndexPath = indexPath
+                updatedIndexPath.section -= 1
+                account = fetchedResultsController.object(at: updatedIndexPath)
             }
             let controller = segue.destination as! AccountDetailViewController
             controller.managedObjectContext = self.managedObjectContext
             controller.account = account
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        } else if  (segue.identifier == "viewTxns") {
+            let controller = segue.destination as! TxnsViewController
+            controller.managedObjectContext = self.managedObjectContext
+            controller.account = nil
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
     }
@@ -80,46 +84,62 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
     }
 
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return indexPath.section != 0
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
+        let sectionCount : Int = fetchedResultsController.sections?.count ?? 0
+        return sectionCount + 1
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionInfo = fetchedResultsController.sections![section]
-        if (sectionInfo.name == "0") {
-            return "Active"
-        } else if (sectionInfo.name == "1") {
-            return "Inactive"
+        if (section == 0) {
+            return "Actions"
+        } else {
+            let sectionInfo = fetchedResultsController.sections![section-1]
+            return sectionInfo.name + " Accounts"
         }
-        
-        return sectionInfo.name
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return indexPath.section != 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        if (section == 0) {
+            return 1
+        } else {
+            let sectionInfo = fetchedResultsController.sections![section-1]
+            return sectionInfo.numberOfObjects
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath)
-        cell.showsReorderControl = true
-        cell.shouldIndentWhileEditing = false
-        
-        let account = fetchedResultsController.object(at: indexPath)
-        configureCell(cell, withAccount: account)
-        return cell
+        if (indexPath.section == 0) {
+            let cell : UITableViewCell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
+            cell.textLabel?.text = "View All Transactions"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath)
+            cell.showsReorderControl = true
+            cell.shouldIndentWhileEditing = false
+            
+            var updatedIndexPath : IndexPath = indexPath
+            updatedIndexPath.section -= 1
+            let account = fetchedResultsController.object(at: updatedIndexPath)
+            configureCell(cell, withAccount: account)
+            
+            return cell
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showAccountDetails", sender: self)
+        if (indexPath.section == 0) {
+            self.performSegue(withIdentifier: "viewTxns", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "showAccountDetails", sender: self)
+        }
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -212,15 +232,23 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        var updatedIndexPath = indexPath
+        updatedIndexPath?.section += 1
+        
+        var updatedNewIndexPath = newIndexPath
+        updatedNewIndexPath?.section += 1
+        
         switch type {
             case .insert:
-                tableView.insertRows(at: [newIndexPath!], with: .fade)
+                
+                tableView.insertRows(at: [updatedNewIndexPath!], with: .fade)
             case .delete:
-                tableView.deleteRows(at: [indexPath!], with: .fade)
+                tableView.deleteRows(at: [updatedIndexPath!], with: .fade)
             case .update:
                 let accountObj = anObject as? Account
                 if (accountObj != nil) {
-                    configureCell(tableView.cellForRow(at: indexPath!)!, withAccount: anObject as! Account)
+                    configureCell(tableView.cellForRow(at: updatedIndexPath!)!, withAccount: anObject as! Account)
                 }
             case .move:
 //                let cell = tableView.cellForRow(at: indexPath!)
@@ -229,10 +257,10 @@ class AccountsViewController: UITableViewController, NSFetchedResultsControllerD
                 
                 let accountObj = anObject as? Account
                 if (accountObj != nil) {
-                    let cell = tableView.cellForRow(at: indexPath!)
+                    let cell = tableView.cellForRow(at: updatedIndexPath!)
                     if (cell != nil) {
                         configureCell(cell!, withAccount: accountObj!)
-                        tableView.moveRow(at: indexPath!, to: newIndexPath!)
+                        tableView.moveRow(at: updatedIndexPath!, to: updatedNewIndexPath!)
                     }
                 }
         @unknown default:
